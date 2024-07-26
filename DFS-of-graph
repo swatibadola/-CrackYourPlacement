@@ -1,0 +1,27 @@
+// You are given a connected undirected graph. Perform a Depth First Traversal of the graph.
+
+// TIME COMPLEXITY : => For undirected graph: O(N) + O(2*no.of edges)  => For directed graph: O(N) + O(no. of edges)
+// SPACE COMPLEXITY : O(N) + O(N) + O(N) ~ O(N)
+
+class Solution {
+  private:
+    void dfs(int node, vector<int> adj[], int vis[], vector<int> &ls){
+        vis[node] = 1;
+        ls.push_back(node);
+        
+        for(auto it: adj[node]){
+            if(!vis[it]){
+                dfs(it, adj, vis, ls);
+            }
+        }
+    }
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        int vis[V] = {0};
+        int start = 0;
+        vector<int> ls;
+        dfs(start, adj, vis, ls);
+        return ls;
+    }
+};
